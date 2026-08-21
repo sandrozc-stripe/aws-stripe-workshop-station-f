@@ -1,0 +1,13 @@
+.env
+.env.*
+!*.env.example
+!.env.local.example
+!**/.env.example
+!**/.env.local.example
+.venv/
+__pycache__/
+*.pyc
+
+# Local Claude Code session config (personal/internal, not part of the workshop)
+.claude/
+.mcp.json

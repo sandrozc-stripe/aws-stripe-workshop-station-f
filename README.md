@@ -1,108 +1,62 @@
-# AgentCore Project
+# Machine Payments Workshop: AWS Bedrock AgentCore + Stripe
 
-This project was created with the [AgentCore CLI](https://github.com/aws/agentcore-cli).
+An AWS/Stripe joint workshop. You'll build an AI agent on **Amazon Bedrock AgentCore** that can
+**autonomously pay for machine-to-machine (x402 / MPP) protected APIs** — no human in the loop,
+no credit card form. The agent settles payment from a testnet crypto wallet that *you* delegate
+signing rights to, using **Stripe's Privy** as the embedded wallet provider.
 
-## Project Structure
+By the end, your agent will hit a `402 Payment Required` response, pay for it automatically, and
+return the paid content — using real (testnet) money moving on a real (testnet) blockchain.
+
+> **No prior crypto/wallet experience assumed.** Every new concept (wallets, signers, testnets,
+> the payment protocol itself) is explained inline, right where you first need it.
+
+## What you'll build
 
 ```
-my-project/
-├── AGENTS.md               # AI coding assistant context
-├── agentcore/
-│   ├── agentcore.json      # Project config (agents, memories, credentials, gateways, evaluators)
-│   ├── aws-targets.json    # Deployment targets (account + region)
-│   ├── .env.local          # Secrets — API keys (gitignored)
-│   ├── .llm-context/       # TypeScript type definitions for AI assistants
-│   │   ├── agentcore.ts    # AgentCoreProjectSpec types
-│   │   └── aws-targets.ts  # Deployment target types
-│   └── cdk/                # CDK infrastructure (@aws/agentcore-cdk)
-├── app/                    # Agent application code
-└── evaluators/             # Custom evaluator code (if any)
+┌─────────────┐   402 Payment Required    ┌──────────────────┐
+│  Your Agent │ ─────────────────────────▶ │  Paid API/Tool   │
+│ (AgentCore) │ ◀───────────────────────── │ (x402/MPP seller) │
+└──────┬──────┘   200 OK + content         └──────────────────┘
+       │  pays via
+       ▼
+┌─────────────────────┐      delegated signing      ┌───────────────┐
+│ AgentCore Payments   │ ◀─────────────────────────  │ Your Privy    │
+│ (Payment Manager /   │                              │ embedded      │
+│  Connector / Session)│ ────────────────────────────▶│ wallet        │
+└──────────────────────┘      pays from (testnet USDC) └───────────────┘
 ```
 
-## Getting Started
+See [`docs/00-overview.md`](docs/00-overview.md) for the full architecture and a glossary of
+every term used below.
 
-### Prerequisites
+## Modules
 
-- **Node.js** 20.x or later
-- **Python 3.10+** and **uv** for Python agents ([install uv](https://docs.astral.sh/uv/getting-started/installation/))
-- **AWS credentials** configured (`aws configure` or environment variables)
-- **Docker** (only for Container build agents)
+Work through these in order — each one builds on the last.
 
-### Development
+| # | Module | What you'll do |
+|---|---|---|
+| 0 | [Overview](docs/00-overview.md) | Understand the architecture and key concepts before touching anything |
+| 1 | [Prerequisites](docs/01-prerequisites.md) | Set up accounts, CLIs, and the Bedrock model-access form |
+| 2 | [AWS Payments setup](docs/02-aws-payments-setup.md) | Create a Payment Manager + Stripe (Privy) connector in the AWS console |
+| 3 | [Privy dashboard setup](docs/03-privy-dashboard-setup.md) | Create a Privy app, get your API keys, create a signer key |
+| 4 | [Agent project walkthrough](docs/04-agent-project-walkthrough.md) | Tour the agent code, find every "paste here" spot |
+| 5 | [Provision wallet & session](docs/05-provision-wallet-and-session.md) | Create your agent's wallet and fill in `.env.local` |
+| 6 | [Frontend delegation & funding](docs/06-frontend-delegation-and-funding.md) | Log in, delegate signing to your agent, fund the wallet on testnet |
+| 7 | [Run and test the agent](docs/07-run-and-test-the-agent.md) | Run the agent locally and watch it autonomously pay for content |
+| 8 | [Troubleshooting](docs/08-troubleshooting.md) | Symptom → cause → fix, for the gotchas you're most likely to hit |
+| 9 | [Appendix: concepts & CLI reference](docs/09-appendix-concepts-glossary.md) | Standalone glossary + AgentCore CLI command reference |
 
-Run your agent locally:
+## Repo layout
 
-```bash
-agentcore dev
+```
+.
+├── README.md                    <- you are here
+├── AGENTS.md                    <- AgentCore project config reference (for AI coding assistants)
+├── docs/                        <- the workshop guide (start with docs/00-overview.md)
+├── agentcore/                   <- AgentCore project config (agentcore.json, .env.local, CDK)
+├── app/PaymentsAgent/           <- the agent code (Strands + AgentCore Payments plugin)
+└── privy-frontend/              <- delegation/funding web app (vendored from privy-io/aws-agentcore-sdk)
 ```
 
-### Validate Invocation Input
-
-Validate runtime invocation payloads before forwarding them to an agent framework. Keep user prompts typed as strings
-and pass only prompt text to the agent.
-
-### Deployment
-
-Deploy to AWS:
-
-```bash
-agentcore deploy
-```
-
-## Commands
-
-| Command | Description |
-| --- | --- |
-| `agentcore create` | Create a new AgentCore project |
-| `agentcore add` | Add resources (agent, memory, credential, gateway, evaluator, policy) |
-| `agentcore remove` | Remove resources |
-| `agentcore dev` | Run agent locally with hot-reload |
-| `agentcore deploy` | Deploy to AWS via CDK |
-| `agentcore status` | Show deployment status |
-| `agentcore invoke` | Invoke agent (local or deployed) |
-| `agentcore logs` | View agent logs |
-| `agentcore traces` | View agent traces |
-| `agentcore eval` | Run evaluations |
-| `agentcore package` | Package agent artifacts |
-| `agentcore validate` | Validate configuration |
-| `agentcore pause` | Pause a deployed agent |
-| `agentcore resume` | Resume a paused agent |
-| `agentcore fetch` | Fetch remote resource definitions |
-| `agentcore import` | Import existing resources |
-| `agentcore update` | Check for CLI updates |
-
-## Configuration
-
-Edit the JSON files in `agentcore/` to configure your project. See `agentcore/.llm-context/` for type definitions and validation constraints.
-
-The project uses a **flat resource model** — agents, memories, credentials, gateways, evaluators, and policies are top-level arrays in `agentcore.json`. Resources are independent; agents discover memories and credentials at runtime via environment variables or SDK calls.
-
-## Resources
-
-| Resource | Purpose |
-| --- | --- |
-| Agent (runtime) | HTTP, MCP, or A2A agent deployed to AgentCore Runtime |
-| Memory | Persistent context storage with configurable strategies |
-| Credential | API key or OAuth credential providers |
-| Gateway | MCP gateway that routes tool calls to targets |
-| Gateway Target | Tool implementation (Lambda, MCP server, OpenAPI, Smithy, API Gateway) |
-| Evaluator | Custom LLM-as-a-Judge or code-based evaluation |
-| Online Eval Config | Continuous evaluation pipeline for deployed agents |
-| Policy | Cedar authorization policies for gateway tools |
-
-### Agent Types
-
-- **Template agents**: Created from framework templates (Strands, LangChain/LangGraph, GoogleADK, OpenAI Agents, Autogen)
-- **BYO agents**: Bring your own code with `agentcore add agent --type byo`
-- **Import agents**: Import existing Bedrock agents with `agentcore import`
-
-### Build Types
-
-- **CodeZip**: Python source packaged as a zip and deployed directly to AgentCore Runtime
-- **Container**: Docker image built via CodeBuild (ARM64), pushed to ECR, and deployed to AgentCore Runtime
-
-## Documentation
-
-- [AgentCore CLI](https://github.com/aws/agentcore-cli)
-- [AgentCore CDK Constructs](https://github.com/aws/agentcore-l3-cdk-constructs)
-- [Amazon Bedrock AgentCore](https://aws.amazon.com/bedrock/agentcore/)
+Start here: **[docs/00-overview.md](docs/00-overview.md)**.
