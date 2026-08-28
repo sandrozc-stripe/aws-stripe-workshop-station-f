@@ -57,6 +57,10 @@ Run the provisioning script from the repo root:
 uv run main/1_create_payment_instrument_wallet.py
 ```
 
+The repo root's [`pyproject.toml`](../../pyproject.toml) declares the two dependencies this
+script needs (`boto3`, `python-dotenv`). The first time you run `uv run` here, `uv` creates a
+`.venv` and installs them automatically; you don't need to `pip install` anything by hand.
+
 This script ([`main/1_create_payment_instrument_wallet.py`](../../main/1_create_payment_instrument_wallet.py))
 calls AgentCore's `create_payment_instrument` API directly via `boto3`, requesting an
 `EMBEDDED_CRYPTO_WALLET` on the `ETHEREUM` network family (which covers both Base and Base
