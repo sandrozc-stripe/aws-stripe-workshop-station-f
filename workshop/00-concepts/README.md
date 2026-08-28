@@ -45,21 +45,9 @@ checks the session's remaining budget, asks Privy to sign, and returns the proof
 
 ## The runtime flow
 
-```
-1. Agent calls a paid resource (x402)          →  402 Payment Required
-2. Agent's tool calls AgentCore ProcessPayment  →  session limit checked
-3. AgentCore asks Privy to sign                 →  x402 payment proof returned
-4. Agent retries the request with the proof     →  200 OK + paid content
-```
-
-```
- Your Agent  ──────────(1) GET resource───────────▶  Paid API / MCP / content
- Your Agent  ◀─────────    402 Payment Required ────
- Your Agent  ──────────(2) ProcessPayment──────────▶  AgentCore Payments
- AgentCore   ──────────(3) sign via Identity───────▶  Privy embedded wallet
- Your Agent  ──────────(4) retry + signed proof────▶  Paid API / MCP / content
- Your Agent  ◀─────────    200 OK + content ────────
-```
+<p align="center">
+  <img src="../../diagram/runtime_flow.png" width="820" alt="Runtime payment flow: the agent's request gets a 402, ProcessPayment checks the session and signs via Privy, and the retried request returns 200 OK with paid content">
+</p>
 
 In this workshop, steps 1-4 above happen automatically inside the `AgentCorePaymentsPlugin`
 wired into `app/PaymentsAgent/payments.py`; you'll never call `ProcessPayment` yourself. Your job

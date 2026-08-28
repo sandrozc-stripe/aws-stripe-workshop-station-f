@@ -1,0 +1,36 @@
+<mxGraphModel dx="1200" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="500" math="0" shadow="0" adaptiveColors="auto">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="title" value="What you'll build" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="40" y="0" width="400" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="agent" value="Your Agent&#10;(AgentCore)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="40" y="60" width="220" height="100" as="geometry" />
+    </mxCell>
+    <mxCell id="merchant" value="Paid API / Tool&#10;(x402 / MPP seller)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="480" y="60" width="240" height="100" as="geometry" />
+    </mxCell>
+    <mxCell id="agentcore" value="AgentCore Payments&#10;(Payment Manager / Connector / Session)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="40" y="300" width="260" height="120" as="geometry" />
+    </mxCell>
+    <mxCell id="privy" value="Your Privy&#10;embedded wallet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="480" y="300" width="240" height="120" as="geometry" />
+    </mxCell>
+    <mxCell id="e1" value="402 Payment Required" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=12;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;rounded=0;" edge="1" parent="1" source="agent" target="merchant">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e2" value="200 OK + content" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=12;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;rounded=0;" edge="1" parent="1" source="merchant" target="agent">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e3" value="pays via" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;rounded=0;" edge="1" parent="1" source="agent" target="agentcore">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e4" value="delegated signing" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=12;exitX=0;exitY=0.3;exitDx=0;exitDy=0;entryX=1;entryY=0.3;entryDx=0;entryDy=0;rounded=0;" edge="1" parent="1" source="privy" target="agentcore">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e5" value="pays from (testnet USDC)" style="edgeStyle=orthogonalEdgeStyle;html=1;fontSize=12;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;rounded=0;" edge="1" parent="1" source="agentcore" target="privy">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel>

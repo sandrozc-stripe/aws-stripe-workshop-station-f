@@ -13,19 +13,9 @@ return the paid content, using real (testnet) money moving on a real (testnet) b
 
 ## What you'll build
 
-```
-┌─────────────┐   402 Payment Required    ┌──────────────────┐
-│  Your Agent │ ─────────────────────────▶ │  Paid API/Tool   │
-│ (AgentCore) │ ◀───────────────────────── │ (x402/MPP seller) │
-└──────┬──────┘   200 OK + content         └──────────────────┘
-       │  pays via
-       ▼
-┌─────────────────────┐      delegated signing      ┌───────────────┐
-│ AgentCore Payments   │ ◀─────────────────────────  │ Your Privy    │
-│ (Payment Manager /   │                              │ embedded      │
-│  Connector / Session)│ ────────────────────────────▶│ wallet        │
-└──────────────────────┘      pays from (testnet USDC) └───────────────┘
-```
+<p align="center">
+  <img src="diagram/overview.png" width="760" alt="Architecture overview: Your Agent calls a Paid API/Tool over x402, paying via AgentCore Payments, which settles from your Privy embedded wallet under delegated signing">
+</p>
 
 ## Repo layout
 
@@ -33,6 +23,7 @@ return the paid content, using real (testnet) money moving on a real (testnet) b
 .
 ├── README.md                    <- you are here
 ├── WORKSHOP.md                  <- the full step-by-step guide
+├── diagram/                     <- editable .drawio sources + exported PNGs for the diagrams above
 ├── workshop/                    <- the step-by-step guide, one folder per step
 ├── main/                        <- one-off provisioning scripts (wallet + payment session)
 ├── agentcore/                   <- AgentCore project config (agentcore.json, .env.local, CDK)
