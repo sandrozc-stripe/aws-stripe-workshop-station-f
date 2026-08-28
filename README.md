@@ -33,8 +33,7 @@ return the paid content — using real (testnet) money moving on a real (testnet
 .
 ├── README.md                    <- you are here
 ├── WORKSHOP.md                  <- the full step-by-step guide
-├── AGENTS.md                    <- AgentCore project config reference (for AI coding assistants)
-├── images/                      <- screenshots used in WORKSHOP.md
+├── workshop/                    <- the step-by-step guide, one folder per step
 ├── main/                        <- one-off provisioning scripts (wallet + payment session)
 ├── agentcore/                   <- AgentCore project config (agentcore.json, .env.local, CDK)
 ├── app/PaymentsAgent/           <- the agent code (Strands + AgentCore Payments plugin)
