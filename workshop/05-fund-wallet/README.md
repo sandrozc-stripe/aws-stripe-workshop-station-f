@@ -1,12 +1,12 @@
-[← Step 4 — Delegate signing](../04-delegate-signing/README.md) · [Workshop overview](../../WORKSHOP.md) · [Next: Step 6 — Create a payment session →](../06-payment-session/README.md)
+[← Step 4: Delegate signing](../04-delegate-signing/README.md) · [Workshop overview](../../WORKSHOP.md) · [Next: Step 6: Create a payment session →](../06-payment-session/README.md)
 
-# Step 5 — Fund the wallet on testnet
+# Step 5: Fund the wallet on testnet
 
 **Goal of this step:** put testnet USDC into the wallet so there's something for the agent to
 spend in Step 7.
 
 This workshop runs entirely on **Base Sepolia**, a public Ethereum L2 testnet. Nothing here moves
-real money — see [supported networks](../08-reference/README.md#supported-networks) in the
+real money; see [supported networks](../08-reference/README.md#supported-networks) in the
 reference section for the mainnet equivalents if you later move this into production.
 
 ## 5.1 Get testnet USDC from Circle's faucet
@@ -19,7 +19,7 @@ the Privy dashboard from Step 4).
   <img src="images/1_goto_testnet_faucet.png" width="640" alt="Circle faucet: network and token selection">
 </p>
 
-Request funds — the faucet drips a small, fixed amount of free testnet USDC.
+Request funds; the faucet drips a small, fixed amount of free testnet USDC.
 
 <p align="center">
   <img src="images/2_fund_wallet.png" width="640" alt="Circle faucet: entering the wallet address to fund">
@@ -38,7 +38,7 @@ address.
   <img src="images/4_goto_basescan.png" width="640" alt="Basescan: searching for the wallet address">
 </p>
 
-Confirm the USDC balance reflects the faucet transfer before moving on — if it's still zero, wait
+Confirm the USDC balance reflects the faucet transfer before moving on. If it's still zero, wait
 a few seconds and refresh; Base Sepolia confirmations are typically fast but not instant.
 
 <p align="center">
@@ -47,4 +47,4 @@ a few seconds and refresh; Base Sepolia confirmations are typically fast but not
 
 ---
 
-Continue to **[Step 6 — Create a payment session](../06-payment-session/README.md)**.
+Continue to **[Step 6: Create a payment session](../06-payment-session/README.md)**.

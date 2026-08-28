@@ -1,19 +1,19 @@
-[← Step 1 — Privy app setup](../01-privy-app-setup/README.md) · [Workshop overview](../../WORKSHOP.md) · [Next: Step 3 — Provision the wallet →](../03-provision-wallet/README.md)
+[← Step 1: Privy app setup](../01-privy-app-setup/README.md) · [Workshop overview](../../WORKSHOP.md) · [Next: Step 3: Provision the wallet →](../03-provision-wallet/README.md)
 
-# Step 2 — Create an AgentCore Payment Manager + Connector
+# Step 2: Create an AgentCore Payment Manager + Connector
 
-**Goal of this step:** create the AWS-side resources — a **Payment Manager**, a **Payment
-Connector**, and a **payment auth** — that let AgentCore talk to the Privy app you just set up.
+**Goal of this step:** create the AWS-side resources, a **Payment Manager**, a **Payment
+Connector**, and a **payment auth**, that let AgentCore talk to the Privy app you just set up.
 
-This all happens in the [Bedrock AgentCore Payments console](https://console.aws.amazon.com/bedrock-agentcore/)
-— see the [AgentCore Payments developer guide](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/payments.html)
+This all happens in the [Bedrock AgentCore Payments console](https://console.aws.amazon.com/bedrock-agentcore/).
+See the [AgentCore Payments developer guide](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/payments.html)
 for the full service reference. As a refresher on the vocabulary here, see
 [Concepts](../00-concepts/README.md#the-five-resources-youll-create).
 
 ## 2.1 Create a Payment Manager
 
 Open **Amazon Bedrock AgentCore → Payments** in the console and click **Create Payment Manager**.
-Leave the defaults as-is — the default permissions setup creates a new service role scoped to
+Leave the defaults as-is: the default permissions setup creates a new service role scoped to
 payments, which is what you want for a workshop environment.
 
 <p align="center">
@@ -30,7 +30,7 @@ have a role you want to reuse, let the console create one for you.
 ## 2.2 Create a Payment Connector
 
 A Payment Manager can hold multiple connectors, one per wallet provider. Add one and give it a
-name — this is arbitrary, but pick something you'll recognize later (the example below uses
+name (this is arbitrary, but pick something you'll recognize later; the example below uses
 `ThisIsMyConnector`).
 
 <p align="center">
@@ -39,7 +39,7 @@ name — this is arbitrary, but pick something you'll recognize later (the examp
 
 ## 2.3 Create a payment auth
 
-The connector needs a **payment auth** — the credential set it will use to talk to Privy. Create a
+The connector needs a **payment auth**, the credential set it will use to talk to Privy. Create a
 new one using the values from [Step 1](../01-privy-app-setup/README.md):
 
 - **Authorization ID** → the `PRIVY_KEY_ID` from Step 1.
@@ -51,7 +51,7 @@ new one using the values from [Step 1](../01-privy-app-setup/README.md):
 
 Behind the scenes, this auth becomes a `PaymentCredentialProvider` stored in
 [AgentCore Identity](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html),
-backed by AWS Secrets Manager — the same isolation Amazon uses for other credential types in
+backed by AWS Secrets Manager, the same isolation Amazon uses for other credential types in
 AgentCore. Your agent's runtime never sees the raw key; it only ever calls `ProcessPayment` and
 gets back a signed proof.
 
@@ -72,7 +72,7 @@ Once it finishes, the manager shows a **READY** status.
 
 ## What you'll need in Step 3
 
-Before moving on, note two values from this manager's detail page — you'll paste both into
+Before moving on, note two values from this manager's detail page. You'll paste both into
 `.env` at the start of the next step:
 
 - The **Payment Manager ARN**
@@ -80,4 +80,4 @@ Before moving on, note two values from this manager's detail page — you'll pas
 
 ---
 
-Continue to **[Step 3 — Provision the agent's wallet](../03-provision-wallet/README.md)**.
+Continue to **[Step 3: Provision the agent's wallet](../03-provision-wallet/README.md)**.

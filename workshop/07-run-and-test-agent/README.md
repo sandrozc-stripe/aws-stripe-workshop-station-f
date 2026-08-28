@@ -1,6 +1,6 @@
-[← Step 6 — Payment session](../06-payment-session/README.md) · [Workshop overview](../../WORKSHOP.md) · [Next: Reference & troubleshooting →](../08-reference/README.md)
+[← Step 6: Payment session](../06-payment-session/README.md) · [Workshop overview](../../WORKSHOP.md) · [Next: Reference & troubleshooting →](../08-reference/README.md)
 
-# Step 7 — Run the agent and watch it pay
+# Step 7: Run the agent and watch it pay
 
 **Goal of this step:** run `app/PaymentsAgent` locally via `agentcore dev`, prompt it to hit a paid
 endpoint, and confirm the payment on-chain.
@@ -9,8 +9,8 @@ Everything up to this point was provisioning. This is where it comes together: t
 in `app/PaymentsAgent/main.py` has one tool (`http_request`) and one plugin
 (`AgentCorePaymentsPlugin`, wired in `app/PaymentsAgent/payments.py`). When `http_request` gets a
 `402`, the plugin intercepts it, calls `ProcessPayment` using the session and instrument you
-created in Steps 3 and 6, and retries the request with the signed proof — exactly the flow
-described in [Concepts → the runtime flow](../00-concepts/README.md#the-runtime-flow).
+created in Steps 3 and 6, and retries the request with the signed proof, exactly the flow
+described in [Concepts: the runtime flow](../00-concepts/README.md#the-runtime-flow).
 
 ## 7.1 Point the AWS CLI at a dedicated profile
 
@@ -54,7 +54,7 @@ Access the premium endpoint at https://sandbox.node4all.com/v1/x402-test
 </p>
 
 Under the hood: `http_request` calls the sandbox endpoint, gets a `402`, and the payments plugin
-settles it automatically — no further input needed from you.
+settles it automatically, with no further input needed from you.
 
 ## 7.4 Read the transaction hash
 
@@ -75,7 +75,7 @@ should see your agent's wallet address sending 0.002 USDC to the wallet behind t
 </p>
 
 **That's it.** Your agent discovered a paywall, paid for it autonomously from a wallet it doesn't
-own, within a budget it can't override, and kept going — with no human approving the transaction
+own, within a budget it can't override, and kept going, with no human approving the transaction
 in the moment.
 
 ---
