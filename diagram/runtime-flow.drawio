@@ -1,0 +1,89 @@
+<mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="800" math="0" shadow="0" adaptiveColors="auto">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="title" value="Runtime payment flow" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+      <mxGeometry x="40" y="0" width="400" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="p_agent" value="Your Agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="40" y="40" width="180" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="p_merchant" value="Paid API / MCP / content" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="280" y="40" width="180" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="p_agentcore" value="AgentCore Payments" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="520" y="40" width="180" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="p_privy" value="Privy embedded wallet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="760" y="40" width="180" height="50" as="geometry" />
+    </mxCell>
+    <mxCell id="l_agent" value="" style="html=1;dashed=1;endArrow=none;startArrow=none;strokeColor=#666666;" edge="1" parent="1" source="p_agent">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="130" y="730" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="l_merchant" value="" style="html=1;dashed=1;endArrow=none;startArrow=none;strokeColor=#666666;" edge="1" parent="1" source="p_merchant">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="370" y="730" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="l_agentcore" value="" style="html=1;dashed=1;endArrow=none;startArrow=none;strokeColor=#666666;" edge="1" parent="1" source="p_agentcore">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="610" y="730" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="l_privy" value="" style="html=1;dashed=1;endArrow=none;startArrow=none;strokeColor=#666666;" edge="1" parent="1" source="p_privy">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="850" y="730" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="m1" value="1. GET resource (x402)" style="html=1;endArrow=block;fontSize=12;align=center;verticalAlign=bottom;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="130" y="140" as="sourcePoint" />
+        <mxPoint x="370" y="140" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="m2" value="2. 402 Payment Required" style="html=1;dashed=1;endArrow=open;fontSize=12;align=center;verticalAlign=bottom;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="370" y="220" as="sourcePoint" />
+        <mxPoint x="130" y="220" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="m3" value="3. ProcessPayment" style="html=1;endArrow=block;fontSize=12;align=center;verticalAlign=bottom;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="130" y="300" as="sourcePoint" />
+        <mxPoint x="610" y="300" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="m4" value="4. Sign via Identity" style="html=1;endArrow=block;fontSize=12;align=center;verticalAlign=bottom;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="610" y="380" as="sourcePoint" />
+        <mxPoint x="850" y="380" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="m5" value="5. Signed payment proof" style="html=1;dashed=1;endArrow=open;fontSize=12;align=center;verticalAlign=bottom;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="850" y="460" as="sourcePoint" />
+        <mxPoint x="610" y="460" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="m6" value="6. Proof returned" style="html=1;dashed=1;endArrow=open;fontSize=12;align=center;verticalAlign=bottom;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="610" y="540" as="sourcePoint" />
+        <mxPoint x="130" y="540" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="m7" value="7. Retry with signed proof" style="html=1;endArrow=block;fontSize=12;align=center;verticalAlign=bottom;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="130" y="620" as="sourcePoint" />
+        <mxPoint x="370" y="620" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="m8" value="8. 200 OK + paid content" style="html=1;dashed=1;endArrow=open;fontSize=12;align=center;verticalAlign=bottom;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="370" y="700" as="sourcePoint" />
+        <mxPoint x="130" y="700" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+  </root>
+</mxGraphModel>

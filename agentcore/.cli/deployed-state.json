@@ -1,3 +1,17 @@
 {
-  "targets": {}
+  "targets": {
+    "default": {
+      "resources": {
+        "runtimes": {
+          "PaymentsAgent": {
+            "runtimeId": "PaymentsAgent_PaymentsAgent-Kswmsr4rBj",
+            "runtimeArn": "arn:aws:bedrock-agentcore:us-east-1:610514183125:runtime/PaymentsAgent_PaymentsAgent-Kswmsr4rBj",
+            "roleArn": "arn:aws:iam::610514183125:role/AgentCore-PaymentsAgent-d-ApplicationAgentPaymentsA-uFa4r1dNsrxj"
+          }
+        },
+        "stackName": "AgentCore-PaymentsAgent-default",
+        "deployHash": "4f4dc5b508c30615"
+      }
+    }
+  }
 }
