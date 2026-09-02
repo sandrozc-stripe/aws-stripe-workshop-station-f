@@ -44,7 +44,8 @@ src/http-adapters.ts
 src/mpp-handler.solution.ts
 test/handler.test.ts
 test/http-adapters.test.ts
-docs/student-mpp-workshop.md
+../workshop/00-public-api/README.md
+../workshop/01-paid-api/README.md
 .env.example
 ```
 

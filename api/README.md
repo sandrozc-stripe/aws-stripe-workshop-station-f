@@ -1,6 +1,8 @@
-# AWS Lambda x402 Paywall Workshop
+# AWS Lambda x402 Paywall
 
-This project is a hands-on workshop for building and monetizing a small API on AWS.
+This directory contains the seller API used in the AWS and Stripe Machine Payments Workshop.
+The workshop starts by building and monetizing this API, then continues with an Amazon Bedrock
+AgentCore buyer that pays it autonomously.
 
 You begin with a public endpoint that returns JSON without authentication or payment:
 
@@ -25,7 +27,7 @@ src/http-adapters.ts           API Gateway/Web API adapters
 src/mpp-handler.solution.ts    Completed paywall reference
 lib/api-stack.ts               Lambda and API Gateway CDK stack
 test/                          Starter API and adapter tests
-docs/                          Sequential workshop instructions
+../workshop/                   Sequential participant instructions
 ```
 
 The free and paid handlers are separate entry points. Running `npm run deploy` deploys the free API. Running `npm run deploy:mpp` deploys the paywall you create during the workshop.
@@ -39,9 +41,13 @@ The free and paid handlers are separate entry points. Running `npm run deploy` d
 - Stripe machine payments
 - Base Sepolia USDC for sandbox testing
 
-## Workshop
+## Workshop chapters
 
-Complete the guides in order:
+The participant guides live in the repository's shared `workshop/` directory. Complete them in
+order:
 
-1. [Part 1: Build and deploy the free API](docs/01-free-api.md)
-2. [Part 2: Add the HTTP 402 paid API](docs/02-paid-api.md)
+1. [Step 0: Build and Deploy the Public API](../workshop/00-public-api/README.md)
+2. [Step 1: Add the HTTP 402 Paid API](../workshop/01-paid-api/README.md)
+3. [Step 2: Understand AgentCore Payments and Privy](../workshop/02-concepts/README.md)
+
+See the [complete workshop outline](../WORKSHOP.md) for prerequisites and all chapters.

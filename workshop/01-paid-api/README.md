@@ -1,4 +1,6 @@
-# Part 2: Add the HTTP 402 Paid API
+[← Step 0: Build and Deploy the Public API](../00-public-api/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 2: Understand AgentCore Payments and Privy →](../02-concepts/README.md)
+
+# Step 1: Add the HTTP 402 Paid API
 
 ## Goal
 
@@ -15,7 +17,8 @@ request with a valid x402 payment signature
 
 You will create one application file: `src/mpp-handler.ts`. The API Gateway stack and the Web `Request`/`Response` adapters are already provided, so you will only implement the paywall.
 
-Complete [Part 1](01-free-api.md) first so that you have a deployed free API and its full URL.
+Complete [Step 0](../00-public-api/README.md) first so that you have a deployed public API and its
+full URL. Run all commands in this step from the `api/` directory you entered in Step 0.
 
 ## Before you start
 
@@ -39,11 +42,12 @@ Complete the Stripe setup in this order:
 
 The payment method, Profile ID, and secret key must all belong to the same sandbox. Creating a Profile or a crypto deposit address does not activate the **Stablecoins and Crypto** payment method by itself.
 
-To complete a paid retry, you also need an x402 v2-compatible buyer funded with Base Sepolia test USDC. You will not implement the buyer in this project; you will implement only the seller-side `402` paywall.
+You will build an x402-compatible buyer funded with Base Sepolia test USDC in the next phase of
+this workshop. For now, focus on the seller-side `402` paywall.
 
 Keep every payment component in test mode. Do not combine a test Stripe key with a live profile, live funds, or a mainnet facilitator.
 
-## Step 1: configure the payment service
+## 1.1 Configure the payment service
 
 Copy the safe environment template. `.env` is ignored by Git:
 
@@ -71,7 +75,7 @@ X402_FACILITATOR_URL=https://x402.org/facilitator
 
 `MPP_AMOUNT` is a decimal dollar amount: `0.01` means one cent. Keep it at or above `0.01` so Stripe can represent the resulting PaymentIntent amount. Use the public facilitator shown above only for supported test networks.
 
-## Step 2: create the paywall handler
+## 1.2 Create the paywall handler
 
 Create `src/mpp-handler.ts` with the following code:
 
@@ -183,7 +187,7 @@ export async function handler(
 }
 ```
 
-## Step 3: understand the payment boundary
+## 1.3 Understand the payment boundary
 
 The important part of your handler is deliberately small:
 
@@ -208,7 +212,7 @@ The provided adapters preserve `PAYMENT-SIGNATURE` on the buyer's retry, `PAYMEN
 
 You also cache the initialized payment handler outside the Lambda invocation path. Warm invocations can reuse the Stripe deposit address and `mppx` setup instead of rebuilding them for every request.
 
-## Step 4: type-check the paywall
+## 1.4 Type-check the paywall
 
 Run the starter tests and the dedicated paywall type-check:
 
@@ -223,7 +227,7 @@ You can compare your implementation with `src/mpp-handler.solution.ts`. You can 
 npm run build:mpp-solution
 ```
 
-## Step 5: deploy the paid handler
+## 1.5 Deploy the paid handler
 
 Use the paid deployment commands:
 
@@ -236,9 +240,9 @@ These commands load `.env`, set `MPP_ENABLED=true`, and switch Lambda from `src/
 
 Running the ordinary `npm run deploy` command selects the free handler again.
 
-## Step 6: observe HTTP 402
+## 1.6 Observe HTTP 402
 
-Call the same endpoint that you deployed in Part 1:
+Call the same endpoint that you deployed in Step 0:
 
 ```bash
 curl -i "https://your-api-id.execute-api.your-aws-region.amazonaws.com/content"
@@ -258,19 +262,6 @@ This `402` is your product offer. It tells an x402-compatible client which netwo
 
 In sandbox mode, your challenge should describe Base Sepolia (`eip155:84532`), USDC, the Stripe-managed recipient address, and your configured amount.
 
-## Step 7: make a paid request
-
-Give your endpoint URL to an x402 v2-compatible client whose wallet has Base Sepolia test USDC. The client will:
-
-1. call `GET /content` and receive your `402` challenge;
-2. authorize the exact USDC payment described by `PAYMENT-REQUIRED`;
-3. retry `GET /content` with `PAYMENT-SIGNATURE`;
-4. receive HTTP `200`, your content, and `PAYMENT-RESPONSE`.
-
-You can use Amazon Bedrock AgentCore Payments with a funded Privy-backed instrument as the buyer, but you do not need buyer-specific code in this repository.
-
-After settlement, open Payments in the same Stripe sandbox used by `STRIPE_SECRET_KEY`. You should see the transaction as a crypto PaymentIntent. Receiving a `402` alone never creates a completed payment.
-
 ## Checkpoint
 
 You have changed the endpoint from a free resource into a paid resource while preserving its URL and content contract:
@@ -289,7 +280,8 @@ You deployed the free handler. Run `npm run deploy:mpp`.
 
 ### Deployment says `src/mpp-handler.ts` is missing
 
-Create the file from Step 2. If you want to deploy the instructor reference temporarily, run `npm run deploy:mpp-solution`.
+Create the file from section 1.2. If you want to deploy the instructor reference temporarily,
+run `npm run deploy:mpp-solution`.
 
 ### You receive HTTP 500
 
@@ -305,10 +297,16 @@ Confirm that **Stablecoins and Crypto** is **Active** under **Settings → Payme
 
 Check the Lambda logs in CloudWatch for `[stripe] failed to record crypto payment`. An error saying that payment method type `crypto` is invalid means **Stablecoins and Crypto** is not active for that sandbox. The on-chain settlement can succeed even when Stripe rejects the subsequent PaymentIntent creation, so do not treat wallet movement alone as proof that a PaymentIntent was recorded.
 
-## Cleanup
+## Next: understand the paying agent
 
-Remove the deployed AWS resources:
+Keep the paid API deployed and save its full `/content` URL. In the next phase, you will build the
+Amazon Bedrock AgentCore buyer that funds a wallet, receives this API's x402 challenge, settles
+the payment, and retries the request with proof of payment.
+
+Return to the repository root before continuing:
 
 ```bash
-npm run destroy
+cd ..
 ```
+
+Continue with **[Step 2: Understand AgentCore Payments and Privy](../02-concepts/README.md)**.

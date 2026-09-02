@@ -1,11 +1,11 @@
-[← Step 5: Fund the wallet](../05-fund-wallet/README.md) · [Workshop overview](../../WORKSHOP.md) · [Next: Step 7: Run and test the agent →](../07-run-and-test-agent/README.md)
+[← Step 7: Fund the Wallet on Testnet](../07-fund-wallet/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 9: Run the Agent and Watch It Pay →](../09-run-and-test-agent/README.md)
 
-# Step 6: Create a payment session
+# Step 8: Create a payment session
 
 **Goal of this step:** create a **PaymentSession**, a time-boxed, spend-capped context the agent
-will operate under in Step 7.
+will operate under in Step 9.
 
-## Why sessions exist
+## 8.1 Why sessions exist
 
 AgentCore enforces spending at the session level, not per-recipient. Every `PaymentSession` has:
 
@@ -25,7 +25,7 @@ rather than one long-lived session reused across many conversations. It keeps th
 a misbehaving agent small. This workshop uses a longer window purely for convenience while you're
 testing.
 
-## Run the script
+## 8.2 Run the script
 
 ```bash
 uv run main/2_create_payment_session.py
@@ -54,4 +54,4 @@ values from your root `.env`. Populate all five entries: `AWS_REGION`, `PAYMENT_
 
 ---
 
-Continue to **[Step 7: Run and test the agent](../07-run-and-test-agent/README.md)**.
+Continue to **[Step 9: Run the Agent and Watch It Pay](../09-run-and-test-agent/README.md)**.

@@ -1,15 +1,15 @@
-[← Concepts](../00-concepts/README.md) · [Workshop overview](../../WORKSHOP.md) · [Next: Step 2: AgentCore Payment Manager →](../02-agentcore-payment-manager/README.md)
+[← Step 2: Understand AgentCore Payments and Privy](../02-concepts/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 4: Create an AgentCore Payment Manager + Connector →](../04-agentcore-payment-manager/README.md)
 
-# Step 1: Create your Privy app & authorization key
+# Step 3: Create your Privy app & authorization key
 
 **Goal of this step:** end up with four values (`PRIVY_APP_ID`, `PRIVY_APP_SECRET`,
 `PRIVY_KEY_ID`, and `PRIVY_PRIVATE_KEY`) saved in your root `.env`. AgentCore needs all four to
-create the payment connector in Step 2.
+create the payment connector in Step 4.
 
 Privy is where the actual wallet infrastructure lives. AWS never talks to Privy's dashboard or SDK
 directly; it authenticates using the credentials you generate here.
 
-## 1.1 Create your `.env` file first
+## 3.1 Create your `.env` file first
 
 Copy `.env.example` to `.env` at the repo root now, before you start clicking through Privy. That
 way every credential below has somewhere to land the moment you copy it, instead of piling up in
@@ -31,7 +31,7 @@ PRIVY_PRIVATE_KEY=...        # wallet-auth: prefix stripped
 Treat these like passwords: they belong only in `.env` (which is git-ignored), never committed,
 pasted into chat, or hardcoded in agent source.
 
-## 1.2 Create a dedicated Privy app
+## 3.2 Create a dedicated Privy app
 
 Sign up at the [Privy dashboard](https://dashboard.privy.io/) and create a new app. Use a
 **dedicated** app for this workshop rather than reusing one that serves another product; it keeps
@@ -49,7 +49,7 @@ Once created, Privy shows your keys exactly once.
   <img src="images/2_create_app.png" width="640" alt="Privy dashboard: newly created app confirmation">
 </p>
 
-## 1.3 Retrieve your API keys
+## 3.3 Retrieve your API keys
 
 From the app's **API keys** page, copy the **App ID** and **App secret** straight into `.env` as
 `PRIVY_APP_ID` and `PRIVY_APP_SECRET`.
@@ -61,7 +61,7 @@ From the app's **API keys** page, copy the **App ID** and **App secret** straigh
 > **Save the App secret now.** Privy does not store it after creation. If you lose it, you'll
 > need to reset it and update every place it's referenced.
 
-## 1.4 Generate a Privy authorization key
+## 3.4 Generate a Privy authorization key
 
 Payments need a second, separate credential: a **signer key** that AgentCore uses to sign wallet
 operations on the agent's behalf. This is not the same thing as your API keys above: API keys
@@ -80,7 +80,7 @@ Click **New Key** to generate a P-256 key pair.
   <img src="images/5_create_key.png" width="640" alt="Privy dashboard: New Key creation dialog">
 </p>
 
-## 1.5 Note the Authorization ID and private key
+## 3.5 Note the Authorization ID and private key
 
 Once created, Privy shows the key's credentials: the **Authorization ID** (this is your
 `PRIVY_KEY_ID`) and the **private key** (this becomes your `PRIVY_PRIVATE_KEY`, after one edit;
@@ -101,4 +101,4 @@ see the warning below). Copy both into `.env` to finish this step.
 
 ---
 
-Continue to **[Step 2: Create an AgentCore Payment Manager + Connector](../02-agentcore-payment-manager/README.md)**.
+Continue to **[Step 4: Create an AgentCore Payment Manager + Connector](../04-agentcore-payment-manager/README.md)**.

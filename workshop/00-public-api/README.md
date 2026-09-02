@@ -1,4 +1,6 @@
-# Part 1: Build and Deploy the Free API
+[← Project Overview](../../README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 1: Add the HTTP 402 Paid API →](../01-paid-api/README.md)
+
+# Step 0: Build and Deploy the Public API
 
 ## Goal
 
@@ -10,7 +12,7 @@ At the end of this part, the endpoint will behave like this:
 GET /content -> HTTP 200 + JSON content
 ```
 
-This gives you a working control case before you add monetization in Part 2.
+This gives you a working control case before you add monetization in Step 1.
 
 ## Before you start
 
@@ -21,15 +23,18 @@ You need:
 - AWS credentials configured in your shell
 - an AWS region in which you can deploy Lambda, API Gateway, and CloudWatch resources
 
-## Step 1: install the project
+## 0.1 Install the project
 
-Install the declared dependencies:
+From the repository root, enter the seller API project and install its declared dependencies:
 
 ```bash
+cd api
 npm install
 ```
 
-## Step 2: inspect the free handler
+Run the remaining commands in this part from the `api/` directory.
+
+## 0.2 Inspect the public handler
 
 Open `src/handler.ts`. The `GET /content` route returns the content immediately:
 
@@ -53,7 +58,7 @@ The successful response is:
 }
 ```
 
-## Step 3: run the tests
+## 0.3 Run the tests
 
 Run:
 
@@ -68,7 +73,7 @@ The tests confirm that:
 - unsupported methods return HTTP `404`;
 - the HTTP adapters preserve headers and response status codes.
 
-## Step 4: validate the AWS stack
+## 0.4 Validate the AWS stack
 
 Synthesize the CloudFormation template:
 
@@ -85,7 +90,7 @@ The stack contains:
 
 The free deployment passes only `CONTENT_VERSION=starter` to Lambda. It does not require payment configuration.
 
-## Step 5: deploy the free API
+## 0.5 Deploy the public API
 
 Bootstrap CDK once for each AWS account and region:
 
@@ -101,7 +106,7 @@ npm run deploy
 
 CDK prints an `ApiUrl`. Copy that URL for the next step.
 
-## Step 6: call the endpoint
+## 0.6 Call the endpoint
 
 Send an unpaid request:
 
@@ -130,4 +135,4 @@ content-type: application/json
 
 You now have a public API that returns useful content without a paywall. Keep its full URL: you will call the same URL after replacing the free handler with the paid handler.
 
-Continue with [Part 2: Add the HTTP 402 paid API](02-paid-api.md).
+Continue with **[Step 1: Add the HTTP 402 Paid API](../01-paid-api/README.md)**.
