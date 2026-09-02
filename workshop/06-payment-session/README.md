@@ -35,14 +35,22 @@ uv run main/2_create_payment_session.py
 `create_payment_session` API against the `PAYMENT_MANAGER_ARN` and `PAYMENT_USER_ID` from your
 `.env`, requesting a 180-minute session capped at $5.00 USD.
 
-It prints the session ID; copy it into `.env`:
+It prints the session ID; copy it into the root `.env`:
 
 ```
 Session ID: payment-session-xxx
 ```
 
-Your `.env` should now have every value the agent needs at runtime: `PAYMENT_MANAGER_ARN`,
-`PAYMENT_USER_ID`, `PAYMENT_INSTRUMENT_ID`, and `PAYMENT_SESSION_ID`.
+The agent reads its runtime configuration from a separate `.env` in `app/PaymentsAgent/`. Create
+that file from the example:
+
+```bash
+cp app/PaymentsAgent/.env.example app/PaymentsAgent/.env
+```
+
+Then edit `app/PaymentsAgent/.env` and replace the example placeholders with the corresponding
+values from your root `.env`. Populate all five entries: `AWS_REGION`, `PAYMENT_MANAGER_ARN`,
+`PAYMENT_USER_ID`, `PAYMENT_INSTRUMENT_ID`, and the new `PAYMENT_SESSION_ID`.
 
 ---
 

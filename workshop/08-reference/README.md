@@ -103,6 +103,14 @@ stays identical.
 
 ## Troubleshooting
 
+- **The wallet or payment-session Python script fails with a permission error.** In the AWS
+  Console, open **IAM → Roles** and find the most recently created role—the workshop role created
+  with your Payment Manager. Open it, choose **Add permissions → Attach policies**, search for and
+  select **AdministratorAccess**, then choose **Add permissions**. Run
+  `main/1_create_payment_instrument_wallet.py` or `main/2_create_payment_session.py` again after
+  the policy is attached. `AdministratorAccess` is intentionally broad; use it only to unblock
+  this workshop environment, then remove it and replace it with least-privilege permissions for
+  any production setup.
 - **AgentCore rejects the authorization private key.** You likely forgot to strip the
   `wallet-auth:` prefix Privy adds to the generated key (see
   [Step 1](../01-privy-app-setup/README.md#15-note-the-authorization-id-and-private-key)).

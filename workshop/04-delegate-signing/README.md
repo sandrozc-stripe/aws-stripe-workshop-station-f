@@ -30,9 +30,16 @@ Edit `privy-frontend/.env`:
 
 ## 4.2 Run the app and log in
 
-Start the app (`npm run dev`, or whatever the frontend's README specifies), then log in using the
-same `END_USER_EMAIL` you defined in [Step 3](../03-provision-wallet/README.md). The wallet is
-linked to that email, so logging in with any other address won't show it.
+Install the frontend dependencies and start the development server:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000), then log in using the same `END_USER_EMAIL`
+you defined in [Step 3](../03-provision-wallet/README.md). The wallet is linked to that email, so
+logging in with any other address won't show it.
 
 <p align="center">
   <img src="images/1_run_app.png" width="640" alt="Privy frontend: running application landing page">
