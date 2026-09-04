@@ -1,6 +1,6 @@
-[← Step 7: Run and test the agent](../07-run-and-test-agent/README.md) · [Workshop overview](../../WORKSHOP.md)
+[← Step 9: Run the Agent and Watch It Pay](../09-run-and-test-agent/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Workshop Overview →](../../WORKSHOP.md)
 
-# Reference & troubleshooting
+# Step 10: Reference & troubleshooting
 
 Background you don't need to finish the workshop, but will want once you go beyond the sandbox
 endpoint: spend controls, observability, supported networks, security considerations, and the
@@ -9,7 +9,7 @@ gotchas most likely to trip you up.
 ## Spend controls
 
 AgentCore enforces spending at the **Payment Session** level (see
-[Step 6](../06-payment-session/README.md)). There are no separate budget objects and no built-in
+[Step 8](../08-payment-session/README.md)). There are no separate budget objects and no built-in
 per-recipient allowlist at the session layer.
 
 | Field | Description |
@@ -57,7 +57,7 @@ AWS resource attributes.
 ## Supported networks
 
 AgentCore Payments with Privy settles in **USDC**. When you create the PaymentInstrument
-(Step 3), you choose a network *family*; the x402 challenge returned by the merchant then
+(Step 5), you choose a network *family*; the x402 challenge returned by the merchant then
 specifies the exact chain within that family.
 
 | Network family | Chains | Asset | Type |
@@ -74,10 +74,10 @@ stays identical.
 ## Security considerations
 
 - **User ownership.** AgentCore is an authorized signer, not the wallet owner (see
-  [Concepts: who owns what](../00-concepts/README.md#who-owns-what)). The user grants delegation
+  [Step 2: who owns what](../02-concepts/README.md#who-owns-what)). The user grants delegation
   and can revoke it, or withdraw funds, at any time.
 - **Credential isolation.** Privy credentials live in AgentCore Identity / Secrets Manager (see
-  [Step 2](../02-agentcore-payment-manager/README.md#23-create-a-payment-auth)). Restrict the
+  [Step 4](../04-agentcore-payment-manager/README.md#43-create-a-payment-auth)). Restrict the
   underlying secret to the AgentCore Payments service role only.
 - **Session limits.** Per-session `maxSpendAmount` and short expiry bound runaway spending.
   Design agent prompts and tools assuming the session, not the agent's judgment, is the actual
@@ -103,12 +103,20 @@ stays identical.
 
 ## Troubleshooting
 
+- **The wallet or payment-session Python script fails with a permission error.** In the AWS
+  Console, open **IAM → Roles** and find the most recently created role—the workshop role created
+  with your Payment Manager. Open it, choose **Add permissions → Attach policies**, search for and
+  select **AdministratorAccess**, then choose **Add permissions**. Run
+  `main/1_create_payment_instrument_wallet.py` or `main/2_create_payment_session.py` again after
+  the policy is attached. `AdministratorAccess` is intentionally broad; use it only to unblock
+  this workshop environment, then remove it and replace it with least-privilege permissions for
+  any production setup.
 - **AgentCore rejects the authorization private key.** You likely forgot to strip the
   `wallet-auth:` prefix Privy adds to the generated key (see
-  [Step 1](../01-privy-app-setup/README.md#15-note-the-authorization-id-and-private-key)).
+  [Step 3](../03-privy-app-setup/README.md#35-note-the-authorization-id-and-private-key)).
 - **`ProcessPayment` fails with "Delegation not completed".** The end user hasn't clicked
   **Connect Agent** in the frontend yet, or delegated a different wallet than the one referenced
-  by `PAYMENT_INSTRUMENT_ID`. Revisit [Step 4](../04-delegate-signing/README.md).
+  by `PAYMENT_INSTRUMENT_ID`. Revisit [Step 6](../06-delegate-signing/README.md).
 - **Model access denied when running the agent.** Claude models on Bedrock require a one-time
   model-access request form; see `app/PaymentsAgent/model/load.py` for the model ID in use, and
   request access to it in the [Bedrock console](https://console.aws.amazon.com/bedrock/) under
@@ -116,8 +124,20 @@ stays identical.
 - **`ModuleNotFoundError` for `dotenv` when running the agent.** `app/PaymentsAgent/payments.py`
   needs `python-dotenv`; make sure dependencies are synced (`uv sync` in `app/PaymentsAgent/`).
 - **Agent never gets past the `402`.** Check that the payment session
-  ([Step 6](../06-payment-session/README.md)) hasn't expired or exceeded its spend cap, and that
-  the wallet ([Step 5](../05-fund-wallet/README.md)) actually has testnet USDC.
+  ([Step 8](../08-payment-session/README.md)) hasn't expired or exceeded its spend cap, and that
+  the wallet ([Step 7](../07-fund-wallet/README.md)) actually has testnet USDC.
+
+## Cleanup
+
+After completing the full workshop, remove the seller API's deployed AWS resources:
+
+```bash
+cd api
+npm run destroy
+```
+
+Do not run this command before Step 9: the paying agent needs the API to remain deployed for the
+end-to-end test.
 
 ## Further reading
 
