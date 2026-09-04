@@ -1,4 +1,4 @@
-[← Step 5: Create an AgentCore Payment Manager + Connector](../05-agentcore-payment-manager/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 7: Delegate Signing Rights via the Frontend →](../07-delegate-signing/README.md)
+[← Step 5: Create an AgentCore Payment Manager + Connector](../05-agentcore-payment-manager/README.md) · [Workshop Overview](../README.md) · [Next: Step 7: Delegate Signing Rights via the Frontend →](../07-delegate-signing/README.md)
 
 # Step 6: Provision the agent's wallet
 

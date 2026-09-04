@@ -1,4 +1,4 @@
-[← Project Overview](../../README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 2: Add the HTTP 402 Paid API →](../02-paid-api/README.md)
+[← Project Overview](../../README.md) · [Workshop Overview](../README.md) · [Next: Step 2: Add the HTTP 402 Paid API →](../02-paid-api/README.md)
 
 # Step 1: Build and Deploy the Public API
 

@@ -1,4 +1,4 @@
-[← Step 6: Provision the Agent's Wallet](../06-provision-wallet/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 8: Fund the Wallet on Testnet →](../08-fund-wallet/README.md)
+[← Step 6: Provision the Agent's Wallet](../06-provision-wallet/README.md) · [Workshop Overview](../README.md) · [Next: Step 8: Fund the Wallet on Testnet →](../08-fund-wallet/README.md)
 
 # Step 7: Delegate signing rights via the frontend
 

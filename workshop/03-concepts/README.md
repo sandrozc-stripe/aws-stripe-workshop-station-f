@@ -1,4 +1,4 @@
-[← Step 2: Add the HTTP 402 Paid API](../02-paid-api/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 4: Create Your Privy App & Authorization Key →](../04-privy-app-setup/README.md)
+[← Step 2: Add the HTTP 402 Paid API](../02-paid-api/README.md) · [Workshop Overview](../README.md) · [Next: Step 4: Create Your Privy App & Authorization Key →](../04-privy-app-setup/README.md)
 
 # Step 3: Understand AgentCore Payments and Privy
 

@@ -50,4 +50,4 @@ order:
 2. [Step 2: Add the HTTP 402 Paid API](../workshop/02-paid-api/README.md)
 3. [Step 3: Understand AgentCore Payments and Privy](../workshop/03-concepts/README.md)
 
-See the [complete workshop outline](../WORKSHOP.md) for prerequisites and all chapters.
+See the [complete workshop outline](../workshop/README.md) for prerequisites and all chapters.

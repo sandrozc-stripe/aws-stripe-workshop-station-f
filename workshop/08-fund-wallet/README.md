@@ -1,4 +1,4 @@
-[← Step 7: Delegate Signing Rights via the Frontend](../07-delegate-signing/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 9: Create a Payment Session →](../09-payment-session/README.md)
+[← Step 7: Delegate Signing Rights via the Frontend](../07-delegate-signing/README.md) · [Workshop Overview](../README.md) · [Next: Step 9: Create a Payment Session →](../09-payment-session/README.md)
 
 # Step 8: Fund the wallet on testnet
 
