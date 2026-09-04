@@ -1,10 +1,10 @@
-[← Step 2: Understand AgentCore Payments and Privy](../02-concepts/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 4: Create an AgentCore Payment Manager + Connector →](../04-agentcore-payment-manager/README.md)
+[← Step 3: Understand AgentCore Payments and Privy](../03-concepts/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 5: Create an AgentCore Payment Manager + Connector →](../05-agentcore-payment-manager/README.md)
 
-# Step 3: Create your Privy app & authorization key
+# Step 4: Create your Privy app & authorization key
 
 **Goal of this step:** end up with four values (`PRIVY_APP_ID`, `PRIVY_APP_SECRET`,
 `PRIVY_KEY_ID`, and `PRIVY_PRIVATE_KEY`) saved in your root `.env`. AgentCore needs all four to
-create the payment connector in Step 4.
+create the payment connector in Step 5.
 
 Privy is where the actual wallet infrastructure lives. AWS never talks to Privy's dashboard or SDK
 directly; it authenticates using the credentials you generate here.
@@ -101,4 +101,4 @@ see the warning below). Copy both into `.env` to finish this step.
 
 ---
 
-Continue to **[Step 4: Create an AgentCore Payment Manager + Connector](../04-agentcore-payment-manager/README.md)**.
+Continue to **[Step 5: Create an AgentCore Payment Manager + Connector](../05-agentcore-payment-manager/README.md)**.

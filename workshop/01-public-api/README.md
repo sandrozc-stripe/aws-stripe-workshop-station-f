@@ -1,6 +1,6 @@
-[← Project Overview](../../README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 1: Add the HTTP 402 Paid API →](../01-paid-api/README.md)
+[← Project Overview](../../README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 2: Add the HTTP 402 Paid API →](../02-paid-api/README.md)
 
-# Step 0: Build and Deploy the Public API
+# Step 1: Build and Deploy the Public API
 
 ## Goal
 
@@ -12,7 +12,7 @@ At the end of this part, the endpoint will behave like this:
 GET /content -> HTTP 200 + JSON content
 ```
 
-This gives you a working control case before you add monetization in Step 1.
+This gives you a working control case before you add monetization in Step 2.
 
 ## Before you start
 
@@ -135,4 +135,4 @@ content-type: application/json
 
 You now have a public API that returns useful content without a paywall. Keep its full URL: you will call the same URL after replacing the free handler with the paid handler.
 
-Continue with **[Step 1: Add the HTTP 402 Paid API](../01-paid-api/README.md)**.
+Continue with **[Step 2: Add the HTTP 402 Paid API](../02-paid-api/README.md)**.

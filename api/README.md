@@ -46,8 +46,8 @@ The free and paid handlers are separate entry points. Running `npm run deploy` d
 The participant guides live in the repository's shared `workshop/` directory. Complete them in
 order:
 
-1. [Step 0: Build and Deploy the Public API](../workshop/00-public-api/README.md)
-2. [Step 1: Add the HTTP 402 Paid API](../workshop/01-paid-api/README.md)
-3. [Step 2: Understand AgentCore Payments and Privy](../workshop/02-concepts/README.md)
+1. [Step 1: Build and Deploy the Public API](../workshop/01-public-api/README.md)
+2. [Step 2: Add the HTTP 402 Paid API](../workshop/02-paid-api/README.md)
+3. [Step 3: Understand AgentCore Payments and Privy](../workshop/03-concepts/README.md)
 
 See the [complete workshop outline](../WORKSHOP.md) for prerequisites and all chapters.

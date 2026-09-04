@@ -1,16 +1,16 @@
-[← Step 8: Create a Payment Session](../08-payment-session/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 10: Reference & Troubleshooting →](../10-reference/README.md)
+[← Step 9: Create a Payment Session](../09-payment-session/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 11: Reference & Troubleshooting →](../11-reference/README.md)
 
-# Step 9: Run the agent and watch it pay
+# Step 10: Run the agent and watch it pay
 
 **Goal of this step:** run `app/PaymentsAgent` locally via `agentcore dev`, prompt it to call the
-paid API you deployed in Step 1, and confirm the payment on-chain and in Stripe.
+paid API you deployed in Step 2, and confirm the payment on-chain and in Stripe.
 
 Everything up to this point was provisioning. This is where it comes together: the Strands agent
 in `app/PaymentsAgent/main.py` has one tool (`http_request`) and one plugin
 (`AgentCorePaymentsPlugin`, wired in `app/PaymentsAgent/payments.py`). When `http_request` gets a
 `402`, the plugin intercepts it, calls `ProcessPayment` using the session and instrument you
-created in Steps 5 and 8, and retries the request with the signed proof, exactly the flow
-described in [Step 2: the runtime flow](../02-concepts/README.md#the-runtime-flow).
+created in Steps 6 and 9, and retries the request with the signed proof, exactly the flow
+described in [Step 3: the runtime flow](../03-concepts/README.md#the-runtime-flow).
 
 ## 9.1 Point the AWS CLI at a dedicated profile
 
@@ -44,7 +44,7 @@ agentcore dev
 ## 9.3 Prompt the agent
 
 Use the full `/content` URL you saved in
-[Step 1](../01-paid-api/README.md#16-observe-http-402) and send this prompt. With the workshop's
+[Step 2](../02-paid-api/README.md#16-observe-http-402) and send this prompt. With the workshop's
 default `MPP_AMOUNT`, this call costs 0.01 USDC:
 
 ```
@@ -95,5 +95,5 @@ the agent can't override and without a human approving the transaction in the mo
 
 ---
 
-Continue to **[Step 10: Reference & Troubleshooting](../10-reference/README.md)** for spend controls,
+Continue to **[Step 11: Reference & Troubleshooting](../11-reference/README.md)** for spend controls,
 observability, security considerations, and common failure modes.

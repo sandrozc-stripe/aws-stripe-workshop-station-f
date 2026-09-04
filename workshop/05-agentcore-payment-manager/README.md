@@ -1,6 +1,6 @@
-[← Step 3: Create Your Privy App & Authorization Key](../03-privy-app-setup/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 5: Provision the Agent's Wallet →](../05-provision-wallet/README.md)
+[← Step 4: Create Your Privy App & Authorization Key](../04-privy-app-setup/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 6: Provision the Agent's Wallet →](../06-provision-wallet/README.md)
 
-# Step 4: Create an AgentCore Payment Manager + Connector
+# Step 5: Create an AgentCore Payment Manager + Connector
 
 **Goal of this step:** create the AWS-side resources, a **Payment Manager**, a **Payment
 Connector**, and a **payment auth**, that let AgentCore talk to the Privy app you just set up.
@@ -8,7 +8,7 @@ Connector**, and a **payment auth**, that let AgentCore talk to the Privy app yo
 This all happens in the [Bedrock AgentCore Payments console](https://console.aws.amazon.com/bedrock-agentcore/).
 See the [AgentCore Payments developer guide](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/payments.html)
 for the full service reference. As a refresher on the vocabulary here, see
-[Step 2: Concepts](../02-concepts/README.md#the-five-resources-youll-create).
+[Step 3: Concepts](../03-concepts/README.md#the-five-resources-youll-create).
 
 ## 4.1 Create a Payment Manager
 
@@ -40,10 +40,10 @@ name (this is arbitrary, but pick something you'll recognize later; the example 
 ## 4.3 Create a payment auth
 
 The connector needs a **payment auth**, the credential set it will use to talk to Privy. Create a
-new one using the values from [Step 3](../03-privy-app-setup/README.md):
+new one using the values from [Step 4](../04-privy-app-setup/README.md):
 
-- **Authorization ID** → the `PRIVY_KEY_ID` from Step 3.
-- **Authorization private key** → the stripped `PRIVY_PRIVATE_KEY` from Step 3.
+- **Authorization ID** → the `PRIVY_KEY_ID` from Step 4.
+- **Authorization private key** → the stripped `PRIVY_PRIVATE_KEY` from Step 4.
 
 <p align="center">
   <img src="images/4_create_payment_auth.png" width="760" alt="AWS console: Create payment auth form with Authorization ID and private key fields">
@@ -70,7 +70,7 @@ Once it finishes, the manager shows a **READY** status.
   <img src="images/6_create_payment_manager.png" width="760" alt="AWS console: Payment manager created, showing READY status">
 </p>
 
-## What you'll need in Step 5
+## What you'll need in Step 6
 
 Before moving on, note two values from this manager's detail page. You'll paste both into
 `.env` at the start of the next step:
@@ -80,4 +80,4 @@ Before moving on, note two values from this manager's detail page. You'll paste 
 
 ---
 
-Continue to **[Step 5: Provision the Agent's Wallet](../05-provision-wallet/README.md)**.
+Continue to **[Step 6: Provision the Agent's Wallet](../06-provision-wallet/README.md)**.
