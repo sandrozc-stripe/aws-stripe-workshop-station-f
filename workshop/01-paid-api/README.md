@@ -49,10 +49,12 @@ Keep every payment component in test mode. Do not combine a test Stripe key with
 
 ## 1.1 Configure the payment service
 
-Copy the safe environment template. `.env` is ignored by Git:
+There is only one `.env` for the whole workshop, at the repository root, and every component
+(this API, the provisioning scripts, and the agent) reads that same file. If you haven't created
+it yet, copy the safe environment template now. `.env` is ignored by Git:
 
 ```bash
-cp .env.example .env
+cp ../.env.example ../.env
 ```
 
 Generate the secret that `mppx` will use to bind payment challenges to your API:
@@ -61,7 +63,8 @@ Generate the secret that `mppx` will use to bind payment challenges to your API:
 openssl rand -base64 32
 ```
 
-Put the result and your Stripe sandbox values in `.env`:
+Open the root `.env` (`../.env` from here) and fill in the **Step 1** block with the result and
+your Stripe sandbox values:
 
 ```env
 MPP_AMOUNT=0.01
@@ -74,6 +77,10 @@ X402_FACILITATOR_URL=https://x402.org/facilitator
 ```
 
 `MPP_AMOUNT` is a decimal dollar amount: `0.01` means one cent. Keep it at or above `0.01` so Stripe can represent the resulting PaymentIntent amount. Use the public facilitator shown above only for supported test networks.
+
+You'll come back to this same root `.env` in every later step of the workshop — the buyer-agent
+phase adds its own values further down the file, but there's never a second copy of this file to
+keep in sync.
 
 ## 1.2 Create the paywall handler
 

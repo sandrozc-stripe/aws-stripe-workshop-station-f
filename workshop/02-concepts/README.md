@@ -52,7 +52,7 @@ checks the session's remaining budget, asks Privy to sign, and returns the proof
 In this workshop, runtime steps 1-4 above happen automatically inside the `AgentCorePaymentsPlugin`
 wired into `app/PaymentsAgent/payments.py`; you'll never call `ProcessPayment` yourself. Your job
 across Steps 3-8 is entirely provisioning: get the five resources above into existence and into
-your `.env` files, so that plugin has something to call against.
+your root `.env`, so that plugin has something to call against.
 
 ## Why this needs its own AWS *and* Privy setup
 
