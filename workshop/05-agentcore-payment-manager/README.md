@@ -1,4 +1,4 @@
-[← Step 4: Create Your Privy App & Authorization Key](../04-privy-app-setup/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 6: Provision the Agent's Wallet →](../06-provision-wallet/README.md)
+[← Step 4: Create Your Privy App & Authorization Key](../04-privy-app-setup/README.md) · [Workshop Overview](../README.md) · [Next: Step 6: Provision the Agent's Wallet →](../06-provision-wallet/README.md)
 
 # Step 5: Create an AgentCore Payment Manager + Connector
 

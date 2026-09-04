@@ -1,4 +1,4 @@
-[← Step 9: Create a Payment Session](../09-payment-session/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 11: Reference & Troubleshooting →](../11-reference/README.md)
+[← Step 9: Create a Payment Session](../09-payment-session/README.md) · [Workshop Overview](../README.md) · [Next: Step 11: Reference & Troubleshooting →](../11-reference/README.md)
 
 # Step 10: Run the agent and watch it pay
 

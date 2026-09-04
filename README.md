@@ -35,19 +35,20 @@ from its own project root.
 
 ## Start the workshop
 
-Begin with **[Step 1: Build and Deploy the Public API](workshop/01-public-api/README.md)**.
-
-See the **[full workshop outline](WORKSHOP.md)** for prerequisites and every chapter.
+Start with **[the workshop outline](workshop/README.md)** — it has the full prerequisites list
+(AWS, Stripe, Privy accounts, Node/Python versions) directly above the step-by-step chapters.
+Skipping straight to Step 1 without it is the most common way to get blocked partway through a
+step.
 
 ## Repo layout
 
 ```
 .
 ├── README.md                    <- you are here
-├── WORKSHOP.md                  <- prerequisites and complete workshop outline
 ├── .env.example                 <- the ONE env template for the whole workshop (copy to .env)
 ├── diagram/                     <- editable .drawio sources + exported PNGs for the diagrams above
-├── workshop/                    <- all seller API and buyer agent workshop chapters (Steps 1-11)
+├── workshop/                    <- start here: README.md has the outline + prerequisites,
+│                                    followed by one directory per step (Steps 1-11)
 ├── api/                         <- Lambda/API Gateway seller implementation (Steps 1-2)
 ├── main/                        <- one-off provisioning scripts (wallet + payment session)
 ├── agentcore/                   <- AgentCore project config (agentcore.json, CDK)

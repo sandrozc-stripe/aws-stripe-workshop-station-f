@@ -1,4 +1,4 @@
-[← Step 1: Build and Deploy the Public API](../01-public-api/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 3: Understand AgentCore Payments and Privy →](../03-concepts/README.md)
+[← Step 1: Build and Deploy the Public API](../01-public-api/README.md) · [Workshop Overview](../README.md) · [Next: Step 3: Understand AgentCore Payments and Privy →](../03-concepts/README.md)
 
 # Step 2: Add the HTTP 402 Paid API
 

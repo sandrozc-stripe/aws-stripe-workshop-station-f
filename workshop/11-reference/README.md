@@ -1,4 +1,4 @@
-[← Step 10: Run the Agent and Watch It Pay](../10-run-and-test-agent/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Workshop Overview →](../../WORKSHOP.md)
+[← Step 10: Run the Agent and Watch It Pay](../10-run-and-test-agent/README.md) · [Workshop Overview](../README.md) · [Next: Workshop Overview →](../README.md)
 
 # Step 11: Reference & troubleshooting
 
@@ -151,4 +151,4 @@ end-to-end test.
 
 ---
 
-[← Back to workshop overview](../../WORKSHOP.md)
+[← Back to workshop overview](../README.md)

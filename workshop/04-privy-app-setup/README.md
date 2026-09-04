@@ -1,4 +1,4 @@
-[← Step 3: Understand AgentCore Payments and Privy](../03-concepts/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 5: Create an AgentCore Payment Manager + Connector →](../05-agentcore-payment-manager/README.md)
+[← Step 3: Understand AgentCore Payments and Privy](../03-concepts/README.md) · [Workshop Overview](../README.md) · [Next: Step 5: Create an AgentCore Payment Manager + Connector →](../05-agentcore-payment-manager/README.md)
 
 # Step 4: Create your Privy app & authorization key
 

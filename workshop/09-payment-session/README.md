@@ -1,4 +1,4 @@
-[← Step 8: Fund the Wallet on Testnet](../08-fund-wallet/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 10: Run the Agent and Watch It Pay →](../10-run-and-test-agent/README.md)
+[← Step 8: Fund the Wallet on Testnet](../08-fund-wallet/README.md) · [Workshop Overview](../README.md) · [Next: Step 10: Run the Agent and Watch It Pay →](../10-run-and-test-agent/README.md)
 
 # Step 9: Create a payment session
 
