@@ -18,12 +18,17 @@ funding.
 
 ## 6.1 Configure the frontend
 
+`privy-frontend` is a separate, vendored Next.js app with its own dependency tree, so unlike every
+other part of this workshop it needs its own `.env` (Next.js only loads environment files from a
+project's own root) instead of the repository's root `.env`.
+
 ```bash
 cd privy-frontend
 cp .env.example .env
 ```
 
-Edit `privy-frontend/.env`:
+Edit `privy-frontend/.env`, pasting in the same values you already put in the root `.env` in
+[Step 3](../03-privy-app-setup/README.md):
 
 - `NEXT_PUBLIC_PRIVY_SIGNER_ID` → the `PRIVY_KEY_ID` from [Step 3](../03-privy-app-setup/README.md).
 - `PRIVY_APP_SECRET` → the same value from Step 3.

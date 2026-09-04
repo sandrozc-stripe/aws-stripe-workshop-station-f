@@ -37,20 +37,34 @@ and return the protected content using testnet USDC on Base Sepolia.
 - A [Privy](https://www.privy.io/) account (free); this is where your agent's wallet infrastructure lives.
 - Node.js 20 or newer for the seller API and the `privy-frontend/` app.
 - Python 3.10+ with [`uv`](https://docs.astral.sh/uv/) for `app/PaymentsAgent/` and `main/`, and the [`agentcore` CLI](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/getting-started-cli.html) (`pip install bedrock-agentcore-starter-toolkit` or equivalent).
-- For the buyer phase, a root `.env` file: copy `.env.example` to `.env` (never commit this, see
-  `.gitignore`) and fill in each value as you work through the agent steps.
-  `app/PaymentsAgent/.env.example` covers the subset the agent itself needs at runtime. The
-  seller's separate `api/.env` is created in Step 1.
+- One root `.env` file for the entire workshop: copy `.env.example` to `.env` (never commit this,
+  see `.gitignore`) and fill in each value as you work through the steps below, in both phases.
+  Every script, the seller API's deploy commands, and the agent's runtime all read this same file.
+  The one exception is `privy-frontend/` (Step 6), a separate vendored Next.js app that keeps its
+  own `.env` because Next.js can only load environment files from its own project root.
 
 ## Work through the steps in order
 
-All participant instructions live under [`workshop/`](workshop/). Complete the seller phase
-first, then continue directly into the buyer-agent phase.
+All participant instructions live under [`workshop/`](workshop/). Complete Phase 1 first, then
+continue directly into Phase 2.
+
+### Phase 1 — Build the seller API
+
+Fully self-contained: by the end of Step 1 you have a deployed, paid API and don't need any
+wallet, agent, or AgentCore concepts yet.
 
 | Step | Chapter | What you'll do |
 |---|---|---|
 | 0 | [Build and Deploy the Public API](workshop/00-public-api/README.md) | Deploy a public Lambda endpoint as the control case |
 | 1 | [Add the HTTP 402 Paid API](workshop/01-paid-api/README.md) | Protect the same endpoint with x402 and Stripe machine payments |
+
+### Phase 2 — Build the buyer agent
+
+Configure a funded AgentCore/Privy wallet, delegate payment authority to your agent, and run it
+against the API you just built.
+
+| Step | Chapter | What you'll do |
+|---|---|---|
 | 2 | [Understand AgentCore Payments and Privy](workshop/02-concepts/README.md) | Learn the resources and runtime payment flow before configuring the buyer |
 | 3 | [Create Your Privy App & Authorization Key](workshop/03-privy-app-setup/README.md) | Sign up for Privy, get API keys, and generate the signer key AgentCore will use |
 | 4 | [Create an AgentCore Payment Manager + Connector](workshop/04-agentcore-payment-manager/README.md) | Wire your Privy credentials into AWS in the console |
@@ -59,6 +73,11 @@ first, then continue directly into the buyer-agent phase.
 | 7 | [Fund the Wallet on Testnet](workshop/07-fund-wallet/README.md) | Get free testnet USDC on Base Sepolia and confirm it landed |
 | 8 | [Create a Payment Session](workshop/08-payment-session/README.md) | Set a time-boxed, spend-capped budget for the agent to operate under |
 | 9 | [Run the Agent and Watch It Pay](workshop/09-run-and-test-agent/README.md) | Run the agent locally and watch it autonomously pay your API |
+
+### Reference
+
+| Step | Chapter | What you'll do |
+|---|---|---|
 | 10 | [Reference & Troubleshooting](workshop/10-reference/README.md) | Review spend controls, observability, security, supported networks, and common gotchas |
 
 ## Repo layout
@@ -67,12 +86,13 @@ first, then continue directly into the buyer-agent phase.
 .
 ├── WORKSHOP.md                  <- you are here
 ├── README.md                    <- project overview and workshop entry point
-├── workshop/                    <- all seller API and buyer agent chapters
-├── api/                         <- Lambda/API Gateway seller implementation
+├── .env.example                 <- the ONE env template for the whole workshop (copy to .env)
+├── workshop/                    <- all seller API and buyer agent chapters (Steps 0-10)
+├── api/                         <- Lambda/API Gateway seller implementation (Phase 1)
 ├── main/                        <- one-off provisioning scripts (Steps 5 and 8)
-├── agentcore/                   <- AgentCore project config (agentcore.json, .env.local, CDK)
+├── agentcore/                   <- AgentCore project config (agentcore.json, CDK)
 ├── app/PaymentsAgent/           <- the agent code (Strands + AgentCore Payments plugin)
-└── privy-frontend/              <- delegation/funding web app (Step 6)
+└── privy-frontend/              <- delegation/funding web app, with its own .env (Step 6)
 ```
 
 Start here: **[Step 0: Build and Deploy the Public API](workshop/00-public-api/README.md)**.

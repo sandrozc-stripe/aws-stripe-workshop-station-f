@@ -47,7 +47,7 @@ AWS_SECRET_KEY=...
 
 `AWS_ACCESS_KEY` / `AWS_SECRET_KEY` should belong to an IAM principal with permission to call the
 AgentCore Payments data-plane APIs (`CreatePaymentInstrument`, `CreatePaymentSession`,
-`ProcessPayment`), the same credentials referenced throughout this workshop's `.env` files.
+`ProcessPayment`), the same credentials referenced throughout this workshop's root `.env`.
 
 ## 5.3 Create the wallet
 

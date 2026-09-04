@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from bedrock_agentcore.payments.integrations.config import AgentCorePaymentsPluginConfig
 from bedrock_agentcore.payments.integrations.strands.plugin import AgentCorePaymentsPlugin
 
-load_dotenv(Path(__file__).parent / ".env")
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 
 def load_payments_plugin() -> AgentCorePaymentsPlugin:
