@@ -1,6 +1,6 @@
-[← Step 1: Add the HTTP 402 Paid API](../01-paid-api/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 3: Create Your Privy App & Authorization Key →](../03-privy-app-setup/README.md)
+[← Step 2: Add the HTTP 402 Paid API](../02-paid-api/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 4: Create Your Privy App & Authorization Key →](../04-privy-app-setup/README.md)
 
-# Step 2: Understand AgentCore Payments and Privy
+# Step 3: Understand AgentCore Payments and Privy
 
 Read this before touching any console or terminal. Every later step refers back to the resources
 and vocabulary introduced here.
@@ -23,9 +23,9 @@ from the wallet provider, and returning a payment proof the agent can hand back 
 
 ## Who owns what
 
-This is the one idea worth internalizing before Step 3: **the wallet belongs to your end user, not
+This is the one idea worth internalizing before Step 4: **the wallet belongs to your end user, not
 to the agent or to AWS.** AgentCore is only ever an *authorized signer* on that wallet, and only
-after the user explicitly delegates that authority (Step 6). The user can revoke it, and can
+after the user explicitly delegates that authority (Step 7). The user can revoke it, and can
 withdraw funds, at any time. This is why the workshop has a dedicated frontend step: signing that
 delegation is not something an API call can do on the user's behalf.
 
@@ -33,11 +33,11 @@ delegation is not something an API call can do on the user's behalf.
 
 | Resource | Created in | Purpose |
 |---|---|---|
-| **PaymentCredentialProvider** | AWS console, Step 4 | Stores your Privy `App ID` / `App Secret` / authorization key inside [AgentCore Identity](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html) (backed by AWS Secrets Manager). The agent runtime never reads these directly. |
-| **PaymentManager** | AWS console, Step 4 | The top-level coordinator for your account. Defines how callers authenticate to it (`AWS_IAM` or `CUSTOM_JWT`) and which IAM role AgentCore assumes to do payment work. |
-| **PaymentConnector** | AWS console, Step 4 | Binds the PaymentManager to a specific provider: here, a `StripePrivy` connector referencing the credential provider above. |
-| **PaymentInstrument** | `main/1_create_payment_instrument_wallet.py`, Step 5 | The end user's wallet. Created via AgentCore's `CreatePaymentInstrument` API (type `EMBEDDED_CRYPTO_WALLET`), **not** through the Privy SDK directly. AgentCore provisions the underlying Privy embedded wallet and hands back its address. |
-| **PaymentSession** | `main/2_create_payment_session.py`, Step 8 | A time-boxed spending context (`maxSpendAmount`, `currency`, `expiryTimeInMinutes`). Once it expires or its limit is hit, AgentCore denies further payments in that session; no signing is even attempted. |
+| **PaymentCredentialProvider** | AWS console, Step 5 | Stores your Privy `App ID` / `App Secret` / authorization key inside [AgentCore Identity](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html) (backed by AWS Secrets Manager). The agent runtime never reads these directly. |
+| **PaymentManager** | AWS console, Step 5 | The top-level coordinator for your account. Defines how callers authenticate to it (`AWS_IAM` or `CUSTOM_JWT`) and which IAM role AgentCore assumes to do payment work. |
+| **PaymentConnector** | AWS console, Step 5 | Binds the PaymentManager to a specific provider: here, a `StripePrivy` connector referencing the credential provider above. |
+| **PaymentInstrument** | `main/1_create_payment_instrument_wallet.py`, Step 6 | The end user's wallet. Created via AgentCore's `CreatePaymentInstrument` API (type `EMBEDDED_CRYPTO_WALLET`), **not** through the Privy SDK directly. AgentCore provisions the underlying Privy embedded wallet and hands back its address. |
+| **PaymentSession** | `main/2_create_payment_session.py`, Step 9 | A time-boxed spending context (`maxSpendAmount`, `currency`, `expiryTimeInMinutes`). Once it expires or its limit is hit, AgentCore denies further payments in that session; no signing is even attempted. |
 
 At runtime there's a sixth moving part, an API call rather than a standing resource:
 **`ProcessPayment`**, the call the agent's tooling makes every time it hits a `402`. AgentCore
@@ -51,7 +51,7 @@ checks the session's remaining budget, asks Privy to sign, and returns the proof
 
 In this workshop, runtime steps 1-4 above happen automatically inside the `AgentCorePaymentsPlugin`
 wired into `app/PaymentsAgent/payments.py`; you'll never call `ProcessPayment` yourself. Your job
-across Steps 3-8 is entirely provisioning: get the five resources above into existence and into
+across Steps 4-9 is entirely provisioning: get the five resources above into existence and into
 your root `.env`, so that plugin has something to call against.
 
 ## Why this needs its own AWS *and* Privy setup
@@ -63,9 +63,9 @@ Two providers, two jobs:
 - **Privy** owns the wallet infrastructure: key generation, embedded wallet creation, and the
   end-user consent flow that grants AgentCore signing rights.
 
-You'll set up Privy first (Step 3), because AgentCore's payment connector needs Privy credentials
-to exist before it can be created (Step 4).
+You'll set up Privy first (Step 4), because AgentCore's payment connector needs Privy credentials
+to exist before it can be created (Step 5).
 
 ---
 
-Continue to **[Step 3: Create Your Privy App & Authorization Key](../03-privy-app-setup/README.md)**.
+Continue to **[Step 4: Create Your Privy App & Authorization Key](../04-privy-app-setup/README.md)**.

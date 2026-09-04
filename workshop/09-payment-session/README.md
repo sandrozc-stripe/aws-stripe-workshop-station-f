@@ -1,9 +1,9 @@
-[← Step 7: Fund the Wallet on Testnet](../07-fund-wallet/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 9: Run the Agent and Watch It Pay →](../09-run-and-test-agent/README.md)
+[← Step 8: Fund the Wallet on Testnet](../08-fund-wallet/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 10: Run the Agent and Watch It Pay →](../10-run-and-test-agent/README.md)
 
-# Step 8: Create a payment session
+# Step 9: Create a payment session
 
 **Goal of this step:** create a **PaymentSession**, a time-boxed, spend-capped context the agent
-will operate under in Step 9.
+will operate under in Step 10.
 
 ## 8.1 Why sessions exist
 
@@ -35,15 +35,15 @@ uv run main/2_create_payment_session.py
 `create_payment_session` API against the `PAYMENT_MANAGER_ARN` and `PAYMENT_USER_ID` from your
 `.env`, requesting a 180-minute session capped at $5.00 USD.
 
-It prints the session ID; copy it into the **Step 8** block of the root `.env`:
+It prints the session ID; copy it into the **Step 9** block of the root `.env`:
 
 ```
 Session ID: payment-session-xxx
 ```
 
 That's it — the agent in `app/PaymentsAgent/` reads its configuration straight from the same root
-`.env`, so there's nothing else to copy or create before Step 9.
+`.env`, so there's nothing else to copy or create before Step 10.
 
 ---
 
-Continue to **[Step 9: Run the Agent and Watch It Pay](../09-run-and-test-agent/README.md)**.
+Continue to **[Step 10: Run the Agent and Watch It Pay](../10-run-and-test-agent/README.md)**.

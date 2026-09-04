@@ -11,7 +11,7 @@ and return the protected content using testnet USDC on Base Sepolia.
 
 > **No prior crypto/wallet experience assumed.** Every new concept (wallets, signers, testnets,
 > the payment protocol itself) is explained in
-> [Step 2: Concepts](workshop/02-concepts/README.md) and again inline, right where you first need
+> [Step 3: Concepts](workshop/03-concepts/README.md) and again inline, right where you first need
 > it.
 
 ## What you'll build
@@ -40,7 +40,7 @@ and return the protected content using testnet USDC on Base Sepolia.
 - One root `.env` file for the entire workshop: copy `.env.example` to `.env` (never commit this,
   see `.gitignore`) and fill in each value as you work through the steps below, in both phases.
   Every script, the seller API's deploy commands, and the agent's runtime all read this same file.
-  The one exception is `privy-frontend/` (Step 6), a separate vendored Next.js app that keeps its
+  The one exception is `privy-frontend/` (Step 7), a separate vendored Next.js app that keeps its
   own `.env` because Next.js can only load environment files from its own project root.
 
 ## Work through the steps in order
@@ -50,13 +50,13 @@ continue directly into Phase 2.
 
 ### Phase 1 — Build the seller API
 
-Fully self-contained: by the end of Step 1 you have a deployed, paid API and don't need any
+Fully self-contained: by the end of Step 2 you have a deployed, paid API and don't need any
 wallet, agent, or AgentCore concepts yet.
 
 | Step | Chapter | What you'll do |
 |---|---|---|
-| 0 | [Build and Deploy the Public API](workshop/00-public-api/README.md) | Deploy a public Lambda endpoint as the control case |
-| 1 | [Add the HTTP 402 Paid API](workshop/01-paid-api/README.md) | Protect the same endpoint with x402 and Stripe machine payments |
+| 1 | [Build and Deploy the Public API](workshop/01-public-api/README.md) | Deploy a public Lambda endpoint as the control case |
+| 2 | [Add the HTTP 402 Paid API](workshop/02-paid-api/README.md) | Protect the same endpoint with x402 and Stripe machine payments |
 
 ### Phase 2 — Build the buyer agent
 
@@ -65,20 +65,20 @@ against the API you just built.
 
 | Step | Chapter | What you'll do |
 |---|---|---|
-| 2 | [Understand AgentCore Payments and Privy](workshop/02-concepts/README.md) | Learn the resources and runtime payment flow before configuring the buyer |
-| 3 | [Create Your Privy App & Authorization Key](workshop/03-privy-app-setup/README.md) | Sign up for Privy, get API keys, and generate the signer key AgentCore will use |
-| 4 | [Create an AgentCore Payment Manager + Connector](workshop/04-agentcore-payment-manager/README.md) | Wire your Privy credentials into AWS in the console |
-| 5 | [Provision the Agent's Wallet](workshop/05-provision-wallet/README.md) | Create the end user's embedded wallet via AgentCore |
-| 6 | [Delegate Signing Rights via the Frontend](workshop/06-delegate-signing/README.md) | Log in as the end user and approve the agent as a wallet signer |
-| 7 | [Fund the Wallet on Testnet](workshop/07-fund-wallet/README.md) | Get free testnet USDC on Base Sepolia and confirm it landed |
-| 8 | [Create a Payment Session](workshop/08-payment-session/README.md) | Set a time-boxed, spend-capped budget for the agent to operate under |
-| 9 | [Run the Agent and Watch It Pay](workshop/09-run-and-test-agent/README.md) | Run the agent locally and watch it autonomously pay your API |
+| 3 | [Understand AgentCore Payments and Privy](workshop/03-concepts/README.md) | Learn the resources and runtime payment flow before configuring the buyer |
+| 4 | [Create Your Privy App & Authorization Key](workshop/04-privy-app-setup/README.md) | Sign up for Privy, get API keys, and generate the signer key AgentCore will use |
+| 5 | [Create an AgentCore Payment Manager + Connector](workshop/05-agentcore-payment-manager/README.md) | Wire your Privy credentials into AWS in the console |
+| 6 | [Provision the Agent's Wallet](workshop/06-provision-wallet/README.md) | Create the end user's embedded wallet via AgentCore |
+| 7 | [Delegate Signing Rights via the Frontend](workshop/07-delegate-signing/README.md) | Log in as the end user and approve the agent as a wallet signer |
+| 8 | [Fund the Wallet on Testnet](workshop/08-fund-wallet/README.md) | Get free testnet USDC on Base Sepolia and confirm it landed |
+| 9 | [Create a Payment Session](workshop/09-payment-session/README.md) | Set a time-boxed, spend-capped budget for the agent to operate under |
+| 10 | [Run the Agent and Watch It Pay](workshop/10-run-and-test-agent/README.md) | Run the agent locally and watch it autonomously pay your API |
 
 ### Reference
 
 | Step | Chapter | What you'll do |
 |---|---|---|
-| 10 | [Reference & Troubleshooting](workshop/10-reference/README.md) | Review spend controls, observability, security, supported networks, and common gotchas |
+| 11 | [Reference & Troubleshooting](workshop/11-reference/README.md) | Review spend controls, observability, security, supported networks, and common gotchas |
 
 ## Repo layout
 
@@ -87,12 +87,12 @@ against the API you just built.
 ├── WORKSHOP.md                  <- you are here
 ├── README.md                    <- project overview and workshop entry point
 ├── .env.example                 <- the ONE env template for the whole workshop (copy to .env)
-├── workshop/                    <- all seller API and buyer agent chapters (Steps 0-10)
+├── workshop/                    <- all seller API and buyer agent chapters (Steps 1-11)
 ├── api/                         <- Lambda/API Gateway seller implementation (Phase 1)
-├── main/                        <- one-off provisioning scripts (Steps 5 and 8)
+├── main/                        <- one-off provisioning scripts (Steps 6 and 9)
 ├── agentcore/                   <- AgentCore project config (agentcore.json, CDK)
 ├── app/PaymentsAgent/           <- the agent code (Strands + AgentCore Payments plugin)
-└── privy-frontend/              <- delegation/funding web app, with its own .env (Step 6)
+└── privy-frontend/              <- delegation/funding web app, with its own .env (Step 7)
 ```
 
-Start here: **[Step 0: Build and Deploy the Public API](workshop/00-public-api/README.md)**.
+Start here: **[Step 1: Build and Deploy the Public API](workshop/01-public-api/README.md)**.

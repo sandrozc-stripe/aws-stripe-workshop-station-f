@@ -1,6 +1,6 @@
-[← Step 0: Build and Deploy the Public API](../00-public-api/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 2: Understand AgentCore Payments and Privy →](../02-concepts/README.md)
+[← Step 1: Build and Deploy the Public API](../01-public-api/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 3: Understand AgentCore Payments and Privy →](../03-concepts/README.md)
 
-# Step 1: Add the HTTP 402 Paid API
+# Step 2: Add the HTTP 402 Paid API
 
 ## Goal
 
@@ -17,8 +17,8 @@ request with a valid x402 payment signature
 
 You will create one application file: `src/mpp-handler.ts`. The API Gateway stack and the Web `Request`/`Response` adapters are already provided, so you will only implement the paywall.
 
-Complete [Step 0](../00-public-api/README.md) first so that you have a deployed public API and its
-full URL. Run all commands in this step from the `api/` directory you entered in Step 0.
+Complete [Step 1](../01-public-api/README.md) first so that you have a deployed public API and its
+full URL. Run all commands in this step from the `api/` directory you entered in Step 1.
 
 ## Before you start
 
@@ -63,7 +63,7 @@ Generate the secret that `mppx` will use to bind payment challenges to your API:
 openssl rand -base64 32
 ```
 
-Open the root `.env` (`../.env` from here) and fill in the **Step 1** block with the result and
+Open the root `.env` (`../.env` from here) and fill in the **Step 2** block with the result and
 your Stripe sandbox values:
 
 ```env
@@ -249,7 +249,7 @@ Running the ordinary `npm run deploy` command selects the free handler again.
 
 ## 1.6 Observe HTTP 402
 
-Call the same endpoint that you deployed in Step 0:
+Call the same endpoint that you deployed in Step 1:
 
 ```bash
 curl -i "https://your-api-id.execute-api.your-aws-region.amazonaws.com/content"
@@ -316,4 +316,4 @@ Return to the repository root before continuing:
 cd ..
 ```
 
-Continue with **[Step 2: Understand AgentCore Payments and Privy](../02-concepts/README.md)**.
+Continue with **[Step 3: Understand AgentCore Payments and Privy](../03-concepts/README.md)**.

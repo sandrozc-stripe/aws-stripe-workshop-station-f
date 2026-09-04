@@ -1,17 +1,17 @@
-[← Step 4: Create an AgentCore Payment Manager + Connector](../04-agentcore-payment-manager/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 6: Delegate Signing Rights via the Frontend →](../06-delegate-signing/README.md)
+[← Step 5: Create an AgentCore Payment Manager + Connector](../05-agentcore-payment-manager/README.md) · [Workshop Overview](../../WORKSHOP.md) · [Next: Step 7: Delegate Signing Rights via the Frontend →](../07-delegate-signing/README.md)
 
-# Step 5: Provision the agent's wallet
+# Step 6: Provision the agent's wallet
 
 **Goal of this step:** create the **PaymentInstrument** (the end user's embedded wallet) and
 confirm it exists in Privy.
 
 A new instrument starts with **0 USDC** and the agent has **no permission to spend from it yet**.
-This step only creates the wallet; funding (Step 7) and delegating signing rights (Step 6) come
+This step only creates the wallet; funding (Step 8) and delegating signing rights (Step 7) come
 after.
 
 ## 5.1 Collect the Payment Manager ARN and Connector ID
 
-Back in the AWS console, open the Payment Manager you created in Step 4 and copy its ARN.
+Back in the AWS console, open the Payment Manager you created in Step 5 and copy its ARN.
 
 <p align="center">
   <img src="images/1_get_payment_manager_arn.png" width="760" alt="AWS console: Payment Manager detail page showing the ARN">
@@ -32,7 +32,7 @@ Copy its Connector ID as well.
 ## 5.2 Fill in `.env`
 
 Define an `END_USER_EMAIL`: this is the email address of the person who will own the wallet and
-approve delegation in Step 6. Add it, along with the ARN and Connector ID above, to your root
+approve delegation in Step 7. Add it, along with the ARN and Connector ID above, to your root
 `.env`:
 
 ```
@@ -85,8 +85,8 @@ was created for the agent's linked account.
 </p>
 
 At this point the wallet exists and holds 0 USDC, but the agent still cannot spend from it. That
-requires the end user's explicit delegation, which is Step 6.
+requires the end user's explicit delegation, which is Step 7.
 
 ---
 
-Continue to **[Step 6: Delegate Signing Rights via the Frontend](../06-delegate-signing/README.md)**.
+Continue to **[Step 7: Delegate Signing Rights via the Frontend](../07-delegate-signing/README.md)**.
