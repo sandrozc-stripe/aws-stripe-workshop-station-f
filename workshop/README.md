@@ -15,23 +15,7 @@ and return the protected content using testnet USDC on Base Sepolia.
 > the payment protocol itself) is explained in
 > [Step 3: Concepts](03-concepts/README.md) and again inline, right where you first need
 > it.
-
-## What you'll build
-
-```
-┌─────────────┐   402 Payment Required    ┌───────────────────┐
-│  Your Agent │ ─────────────────────────▶ │  Paid API/Tool    │
-│ (AgentCore) │ ◀───────────────────────── │ (x402/MPP seller)  │
-└──────┬──────┘   200 OK + content         └───────────────────┘
-       │  pays via
-       ▼
-┌───────────────────────┐    delegated signing    ┌───────────────┐
-│ AgentCore Payments     │ ◀───────────────────────│ Your Privy    │
-│ (Payment Manager /     │                          │ embedded      │
-│  Connector / Session)  │ ────────────────────────▶│ wallet        │
-└─────────────────────────┘   pays from (testnet USDC) └─────────────┘
-```
-
+>
 ## Prerequisites
 
 - An AWS account that can deploy Lambda, API Gateway, and CloudWatch resources, with access to [Amazon Bedrock AgentCore](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html), and the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed.
